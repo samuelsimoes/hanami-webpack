@@ -8,7 +8,7 @@ It'll work without any problem with your existent assets using the [hanami/asset
 
 ## Setup
 
-I'll assume that you already have the Node.js already installed.
+I'll assume that you already have the Node.js installed.
 
 1. Add the `gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'` on your Gemfile.
 2. Run `bundle install`.
