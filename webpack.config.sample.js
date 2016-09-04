@@ -5,8 +5,6 @@ var devServerPort = process.env.WEBPACK_DEV_SERVER_PORT,
     devServerHost = process.env.WEBPACK_DEV_SERVER_HOST,
     publicPath = process.env.WEBPACK_PUBLIC_PATH;
 
-var production = process.env.NODE_ENV;
-
 var config = {
   entry: {},
 
