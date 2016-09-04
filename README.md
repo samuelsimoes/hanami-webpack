@@ -12,7 +12,7 @@ I'll assume that you already have the Node.js already installed.
 
 1. Add the `gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'` on your Gemfile.
 2. Run `bundle install`.
-3. Copy the base Webpack config **[webpack.config.sample.js]()** and **[package.sample.json]()** on your app root (removing the `.sample` in the name).
+3. Copy the base Webpack config **[webpack.config.sample.js](./webpack.config.sample.js)** and **[package.sample.json](./package.sample.json)** on your app root (removing the `.sample` in the name).
 4. Run `npm install`.
 5. Run `bundle exec hanami serve` and profite.
 
