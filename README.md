@@ -66,7 +66,6 @@ To build your assets when you deploy your app you will need place on your `packa
 * Write tests.
 * Release on RubyGems.
 * Research a better way to do these things without monkey patches (I have done, but looks like that with the current Hanami version it's impossible).
-* I want to create a rake task to create a ready to go Webpack config, but actually looks like that it's impossible.
 
 ----------
 Samuel Simões ~ [@samuelsimoes](https://twitter.com/samuelsimoes) ~ [Blog](http://blog.samuelsimoes.com/)
