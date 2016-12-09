@@ -18,9 +18,9 @@ I'll assume that you already have the Node.js installed.
 
 ## Usage
 
-On development this plugin will try to start the **[webpack-dev-server](http://webpack.github.io/docs/webpack-dev-server.html)** with your Hanami server. You can disable this behavior (see [configuration section](#configuration)).
+On development, this plugin will try to start the **[webpack-dev-server](http://webpack.github.io/docs/webpack-dev-server.html)** with your Hanami server. You can disable this behavior (see [configuration section](#configuration)).
 
-You will need the `webpack_asset_path` helper on your templates to get the correct bundle path.
+You will need use the `webpack_asset_path` helper on your templates to get the correct bundle path.
 
 Let's say that you have a [bundle](http://webpack.github.io/docs/configuration.html#entry) with the name `web.people`. You should place on your template:
 
@@ -43,13 +43,13 @@ All plugin configuration is done by the following ENV vars:
 | `WEBPACK_DEV_SERVER` | `false` on production `true` in any other env. | If you want disable the webpack-dev-server integration set this as `false`. |
 
 ## With Heroku
-Just run the command below to configure your Heroku server. This command will set your Hanami to serve the assets (you probably already done this) and will set the Ruby and Node.js buildpacks.
+Just run the command below to configure your Heroku app. This command will set your Hanami app to serve the assets (you probably already done this) and will set the Ruby and Node.js buildpacks.
 
 ```
 heroku config:set SERVE_STATIC_ASSETS=true && heroku buildpacks:set --index 1 heroku/nodejs && heroku buildpacks:set --index 2 heroku/ruby
 ```
 
-To build your assets when you deploy your app you will need place on your `package.json` the [Heroku auto-commands](https://devcenter.heroku.com/articles/nodejs-support#heroku-specific-build-steps):
+To build your assets when you deploy, you will need place on your `package.json` the [Heroku auto-commands](https://devcenter.heroku.com/articles/nodejs-support#heroku-specific-build-steps):
 
 ```
 {
