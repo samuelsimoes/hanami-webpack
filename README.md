@@ -41,7 +41,7 @@ All plugin configuration is done by the following ENV vars:
 | `WEBPACK_PUBLIC_PATH` | `/` | Whenever you want use other [publicPath](http://webpack.github.io/docs/configuration.html#output-publicpath) you should update this var. |
 | `INBUILT_WEBPACK_DEV_SERVER` | `true` | If you want start the webpack-dev-server when you start your hanami server (except on production). |
 | `WEBPACK_DEV_SERVER` | `false` on production `true` in any other env. | If you want disable the webpack-dev-server integration set this as `false`. |
-| `WEBPACK_MANIFEST_FILE` | `manifest.json` | The name of the manifest file that exposes the assets path to Hanami. |
+| `WEBPACK_MANIFEST_FILE` | `webpack_manifest.json` | The name of the manifest file that exposes the assets path to Hanami. |
 
 ## With Heroku
 Just run the command below to configure your Heroku app. This command will set your Hanami app to serve the assets (you probably already done this) and will set the Ruby and Node.js buildpacks.

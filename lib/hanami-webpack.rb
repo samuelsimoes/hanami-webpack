@@ -7,7 +7,7 @@ require_relative 'hanami_webpack/dev_server'
 require_relative 'hanami_webpack/security_headers_hijack'
 
 if Hanami::Utils::Blank.blank?(ENV['WEBPACK_MANIFEST_FILE'])
-  ENV['WEBPACK_MANIFEST_FILE'] = 'manifest.json'
+  ENV['WEBPACK_MANIFEST_FILE'] = 'webpack_manifest.json'
 end
 
 if Hanami::Utils::Blank.blank?(ENV['WEBPACK_DEV_SERVER_HOST'])
