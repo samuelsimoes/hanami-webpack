@@ -7,6 +7,7 @@ require_relative 'entry_point_missing_error'
 module HanamiWebpack
   class Manifest
     def self.bundle_uri(bundle_name)
+
       raise HanamiWebpack::WebpackError, manifest['errors'] unless Hanami::Utils::Blank.blank?(manifest['errors'])
 
       path = manifest['assetsByChunkName'][bundle_name]
@@ -25,7 +26,7 @@ module HanamiWebpack
     end
 
     def self.manifest_path
-      Hanami::Utils::PathPrefix.new('/').join(HanamiWebpack::Config.public_path).join('manifest.json')
+      Hanami::Utils::PathPrefix.new('/').join(HanamiWebpack::Config.public_path).join(HanamiWebpack::Config.manifest_file)
     end
 
     def self.remote_manifest
@@ -33,19 +34,22 @@ module HanamiWebpack
       port = HanamiWebpack::Config.dev_server_port
       http = Net::HTTP.new(host, port)
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      JSON.parse(http.get(manifest_path).body)
+      response = http.get(manifest_path).body
+      JSON.parse(response)
     end
 
     def self.static_manifest
-      path =
-        Hanami
-          .public_directory
-          .join(*HanamiWebpack::Config.public_path.split('/'))
-          .join('manifest.json')
+      @_manifest ||= begin
+        path =
+          Hanami
+            .public_directory
+            .join(*HanamiWebpack::Config.public_path.split('/'))
+            .join(HanamiWebpack::Config.manifest_file)
 
-      file = File.read(path)
+        file = File.read(path)
 
-      JSON.parse(file)
+        JSON.parse(file)
+      end
     end
 
     def self.manifest

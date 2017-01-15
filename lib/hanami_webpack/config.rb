@@ -2,8 +2,13 @@ require 'hanami/utils/blank'
 
 module HanamiWebpack
   class Config
+
     def self.public_path
       ENV['WEBPACK_PUBLIC_PATH']
+    end
+
+    def self.manifest_file
+      ENV['WEBPACK_MANIFEST_FILE']
     end
 
     def self.dev_server_host
