@@ -1,5 +1,5 @@
 var path = require("path"),
-    StatsPlugin = require("stats-webpack-plugin");
+    ManifestPlugin = require("webpack-manifest-plugin");
 
 var devServerPort = process.env.WEBPACK_DEV_SERVER_PORT,
     devServerHost = process.env.WEBPACK_DEV_SERVER_HOST,
@@ -9,7 +9,7 @@ var config = {
   entry: {},
 
   output: {
-    path: path.join(__dirname, "public"),
+    path: path.join(__dirname, "public" + publicPath),
     filename: "[name]-[chunkhash].js"
   },
 
@@ -18,7 +18,9 @@ var config = {
   },
 
   plugins: [
-    new StatsPlugin("webpack_manifest.json")
+    new ManifestPlugin({
+      fileName: 'webpack_manifest.json'
+    })
   ]
 };
 
@@ -27,7 +29,6 @@ if (process.env.INBUILT_WEBPACK_DEV_SERVER) {
     port: devServerPort,
     headers: { "Access-Control-Allow-Origin": "*" }
   };
-  config.output.publicPath = "//" + devServerHost + ":" + devServerPort + "/";
 }
 
 module.exports = config;
