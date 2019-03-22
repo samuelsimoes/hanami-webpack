@@ -10,13 +10,13 @@ module HanamiWebpack
 
       raise HanamiWebpack::WebpackError, manifest['errors'] unless Hanami::Utils::Blank.blank?(manifest['errors'])
 
-      path = manifest['assetsByChunkName'][bundle_name]
+      path = Array(manifest['assetsByChunkName'][bundle_name])
 
-      if Hanami::Utils::Blank.blank?(path)
+      if path.empty?
         raise HanamiWebpack::EntryPointMissingError, "Can't find entry point '#{bundle_name}' in webpack manifest"
       end
 
-      path = Hanami::Utils::PathPrefix.new('/').join(HanamiWebpack::Config.public_path).join(path).to_s
+      path = Hanami::Utils::PathPrefix.new('/').join(HanamiWebpack::Config.public_path).join(path[0]).to_s
 
       if HanamiWebpack::Config.using_dev_server?
         path = "//#{HanamiWebpack::Config.dev_server_host}:#{HanamiWebpack::Config.dev_server_port}#{path}"
