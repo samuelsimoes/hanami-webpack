@@ -1,34 +1,64 @@
 require 'hanami/utils/blank'
+require 'memoizable'
 
 module HanamiWebpack
   class Config
+    include Memoizable
 
-    def self.public_path
-      ENV['WEBPACK_PUBLIC_PATH']
+    class << self
+      extend Forwardable
+
+      def config
+        @config ||= new(env: ENV)
+      end
+
+      def_delegators :config,
+                     :dev_server_host,
+                     :dev_server_port,
+                     :inbuilt_dev_server?,
+                     :manifest_file,
+                     :public_path,
+                     :using_dev_server?
     end
 
-    def self.manifest_file
-      ENV['WEBPACK_MANIFEST_FILE']
+    attr_reader :env
+
+    def initialize(env:)
+      @env = env
     end
 
-    def self.dev_server_host
-      ENV['WEBPACK_DEV_SERVER_HOST']
+    def dev_server_host
+      env['WEBPACK_DEV_SERVER_HOST']
     end
+    memoize :dev_server_host
 
-    def self.dev_server_port
-      ENV['WEBPACK_DEV_SERVER_PORT']
+    def dev_server_port
+      env['WEBPACK_DEV_SERVER_PORT']
     end
+    memoize :dev_server_port
 
-    def self.inbuilt_dev_server?
-      ENV['INBUILT_WEBPACK_DEV_SERVER'] == 'true'
+    def inbuilt_dev_server?
+      env['INBUILT_WEBPACK_DEV_SERVER'] == 'true'
     end
+    memoize :inbuilt_dev_server?
 
-    def self.using_dev_server?
-      if Hanami::Utils::Blank.blank?(ENV['WEBPACK_DEV_SERVER'])
-        ENV['RACK_ENV'] != 'production'
+    def manifest_file
+      env['WEBPACK_MANIFEST_FILE']
+    end
+    memoize :manifest_file
+
+    def public_path
+      env['WEBPACK_PUBLIC_PATH']
+    end
+    memoize :public_path
+
+    def using_dev_server?
+      if Hanami::Utils::Blank.blank?(env['WEBPACK_DEV_SERVER'])
+        env['RACK_ENV'] != 'production'
       else
-        ENV['WEBPACK_DEV_SERVER'] == 'true'
+        env['WEBPACK_DEV_SERVER'] == 'true'
       end
     end
+    memoize :using_dev_server?
   end
 end
