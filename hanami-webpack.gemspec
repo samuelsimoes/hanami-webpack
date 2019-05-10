@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.add_dependency 'hanami'
+  s.add_dependency "thor"
 end
