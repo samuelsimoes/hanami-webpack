@@ -3,6 +3,7 @@ require 'hanami/view'
 require 'hanami/utils/blank'
 require 'hanami/config/security'
 require_relative 'hanami_webpack/view_helper'
+require_relative 'hanami_webpack/cli'
 require_relative 'hanami_webpack/dev_server'
 require_relative 'hanami_webpack/security_headers_hijack'
 
