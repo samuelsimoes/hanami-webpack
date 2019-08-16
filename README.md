@@ -68,5 +68,11 @@ To build your assets when you deploy, you will need place on your `package.json`
 * Release on RubyGems.
 * Research a better way to do these things without monkey patches (I have done, but looks like that with the current Hanami version it's impossible).
 
+# Development
+
+* Clone the repo
+* Run `bundle install` to install everything needed
+* Run `rake` to run the tests
+
 ----------
 Samuel Simões ~ [@samuelsimoes](https://twitter.com/samuelsimoes) ~ [Blog](http://blog.samuelsimoes.com/)
